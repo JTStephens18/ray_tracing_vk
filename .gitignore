@@ -1,3 +1,7 @@
 /build
 /bin
 /assets/brickadia
+/out
+/.vs
+/CMakeFiles
+CMakeCache.txt
