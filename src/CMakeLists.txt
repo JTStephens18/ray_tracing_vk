@@ -31,3 +31,15 @@ add_custom_command(TARGET engine POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:engine> $<TARGET_FILE_DIR:engine>
   COMMAND_EXPAND_LISTS
   )
+
+# These paths point to where the 'Shaders' custom target places the .spv files.
+add_custom_command(TARGET engine POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy
+          "${PROJECT_SOURCE_DIR}/shaders/gradient.comp.spv"
+          "${PROJECT_SOURCE_DIR}/shaders/gradient_color.comp.spv"
+          "${PROJECT_SOURCE_DIR}/shaders/sky.comp.spv"
+          "$<TARGET_FILE_DIR:engine>"
+  COMMENT "Copying compiled shaders to executable directory"
+)
+
+add_dependencies(engine Shaders)
